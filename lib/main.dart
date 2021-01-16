@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -22,6 +24,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
+      routes: <String,WidgetBuilder>{
+        '/home_page' :(BuildContext context) => HomePage()
+      },
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -104,7 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: (){
+          Navigator.of(context).pushNamed('/home_page');
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
