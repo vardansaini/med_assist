@@ -13,27 +13,18 @@ class HomePageState extends State<HomePage>{
     super.initState();
     _button1Pressed = 0;
   }
-  Widget _smallButton(String labelTextBut) {
-    return Container(
-      decoration: BoxDecoration(
-        color: ( _button1Pressed == 1) ? Colors.blue : Colors.black,
-        shape: BoxShape.circle
-      ),
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: 100,
-      height: 100,
-      child: MaterialButton(
-        color: ( _button1Pressed == 1) ? Colors.blue : Colors.black,
-        padding: EdgeInsets.all(16.0),
-        shape: CircleBorder(),
-        onPressed: () {
-          setState(() {
-            _button1Pressed = 1;
-          });
-        },
-        // color: Colors.white,
-        child: Icon(Icons.people, size: 40,),
-      ),
+  Widget _smallButton(int sel) {
+    return MaterialButton(
+      color: ( _button1Pressed == 1) ? Colors.blue : Colors.black,
+      padding: EdgeInsets.all(16.0),
+      shape: CircleBorder(),
+      onPressed: () {
+        setState(() {
+          _button1Pressed = 1;
+        });
+      },
+      // color: Colors.white,
+      child: Icon((sel == 1?Icons.person : Icons.people), size: 70,),
     );
   }
 
@@ -74,7 +65,7 @@ class HomePageState extends State<HomePage>{
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          _smallButton("profile"),
+                          _smallButton(1),
                         ],
                       ),
                     ),
