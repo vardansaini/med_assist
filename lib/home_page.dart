@@ -7,41 +7,32 @@ class HomePage extends StatefulWidget {
   HomePageState createState() => HomePageState();
 }
 class HomePageState extends State<HomePage>{
-  bool _button1Pressed;
+  int _button1Pressed = 0;
   @override
   void initState(){
     super.initState();
-    _button1Pressed = false;
+    _button1Pressed = 0;
   }
   Widget _smallButton(String labelTextBut) {
     return Container(
+      decoration: BoxDecoration(
+        color: ( _button1Pressed == 1) ? Colors.blue : Colors.black,
+        shape: BoxShape.circle
+      ),
       padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: 160.0,
-      height: 180.0,
-      child: RaisedButton(
-        elevation: 5.0,
+      width: 100,
+      height: 100,
+      child: MaterialButton(
+        color: ( _button1Pressed == 1) ? Colors.blue : Colors.black,
+        padding: EdgeInsets.all(16.0),
+        shape: CircleBorder(),
         onPressed: () {
           setState(() {
-            _button1Pressed = true;
+            _button1Pressed = 1;
           });
         },
-        padding: EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
         // color: Colors.white,
-        child: Text(
-          '$labelTextBut',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-          textAlign: TextAlign.center,
-        ),
-        color:  true ? Colors.blue : Colors.black,
+        child: Icon(Icons.people, size: 40,),
       ),
     );
   }
