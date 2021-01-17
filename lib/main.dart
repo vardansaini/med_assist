@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         '/navigator_page': (BuildContext context) => Navigator(),
         '/profileSetUp': (BuildContext context) => ProfilePageSetup(),
       },
-      home: HelpPage(),
+      home: HomePage(),
     );
   }
 }

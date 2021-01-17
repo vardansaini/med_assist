@@ -21,7 +21,7 @@ class HomePageState extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.redAccent[200],
+          color: Colors.indigo[900],
           child: Column(children: <Widget>[
             Icon(
               Icons.person,
@@ -53,7 +53,7 @@ class HomePageState extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.redAccent[200],
+          color: Colors.indigo[900],
           child: Column(children: <Widget>[
             Icon(Icons.home, size: 75, color: Colors.white),
             Text(
@@ -81,7 +81,7 @@ class HomePageState extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.redAccent[200],
+          color: Colors.indigo[900],
           child: Column(
             children: <Widget>[
               Icon(Icons.home, size: 75, color: Colors.white),
@@ -111,7 +111,7 @@ class HomePageState extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.redAccent[200],
+          color: Colors.indigo[900],
           child: Column(
             children: <Widget>[
               Icon(Icons.home, size: 75, color: Colors.white),
@@ -174,7 +174,7 @@ class HomePageState extends State<HomePage> {
                 height: double.infinity,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.deepOrange[50],
+                  color: Colors.white,
                 ),
               ),
               Container(
