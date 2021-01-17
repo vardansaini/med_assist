@@ -34,7 +34,7 @@ dependencies:
   cloud_firestore:
   firebase_database:
   firebase_storage:
-  firebase_core:
+  #firebase_core:
 
 dev_dependencies:
   flutter_test:
