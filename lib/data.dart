@@ -13,7 +13,9 @@ Future<void> updateUser(String userId, String key, dynamic value) {
 }
 
 Future<void> requestHelp(String userId) async {
-  return FirebaseFunctions.instance.httpsCallable('sendHelpAlert').call(userId);
+  return FirebaseFunctions.instance
+      .httpsCallable('sendHelpAlert')
+      .call({'userId': userId});
 }
 
 Future<void> saveTokenToDatabase(String token) async {
@@ -24,9 +26,6 @@ Future<void> saveTokenToDatabase(String token) async {
 }
 
 Future<void> requestNotifications() async {
-  await saveTokenToDatabase(await FirebaseMessaging().getToken());
-  FirebaseMessaging().onTokenRefresh.listen(saveTokenToDatabase);
-
   const channel = AndroidNotificationChannel(
   'med_assist',
   'Medical Emergencies',
@@ -39,4 +38,8 @@ Future<void> requestNotifications() async {
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
+
+  await saveTokenToDatabase(await FirebaseMessaging().getToken());
+  FirebaseMessaging().onTokenRefresh.listen(saveTokenToDatabase);
+  await requestHelp(FirebaseAuth.instance.currentUser.uid);
 }
