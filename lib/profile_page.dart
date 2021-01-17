@@ -78,8 +78,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _signOutButton() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5.0),
-      width: 300.0,
-      height: 100.0,
+      width: 200.0,
+      height: 90.0,
       child: FlatButton(
           onPressed: () {
             signOut(context);
@@ -88,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.red,
+          color: Colors.tealAccent[700],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -98,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(
                   color: Colors.white,
                   letterSpacing: 1.5,
-                  fontSize: 45.0,
+                  fontSize: 35.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'OpenSans',
                 ),textAlign: TextAlign.center,
