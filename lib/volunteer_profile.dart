@@ -73,8 +73,7 @@ class VolunteerPageState extends State<VolunteerPage> {
           )
       ),
           body: SingleChildScrollView(
-             child: Column(
-              children: <Widget>[
+             child: Column(children: <Widget>[
                 Card(
                     elevation: 4.0,
                     margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 1.0),
@@ -120,12 +119,10 @@ class VolunteerPageState extends State<VolunteerPage> {
                               await showInformationDialog(context, userId, "address");
                           },
                           ),
+                   ],
+                    ),
+                ),
 
-
-                        ]
-                    )
-
-                ))],
                 Card(
                   elevation: 4.0,
                   margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 1.0),
@@ -150,5 +147,5 @@ class VolunteerPageState extends State<VolunteerPage> {
           )
       ),
     );
-        };);
+        });
 }}
