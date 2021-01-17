@@ -6,6 +6,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String _name = "";
   TextEditingController _nameCont;
   @override
   void initState(){
@@ -21,14 +22,15 @@ class _ProfilePageState extends State<ProfilePage> {
     return await showDialog(context: context,
     builder: (context){
       return AlertDialog(
-        content: TextField(
+        content: TextFormField(
           controller: _nameCont,
-
         ),
         actions: <Widget> [
           TextButton(
             child: Text('Done'),
             onPressed: () {
+              _name = _nameCont.text;
+              print(_name);
               Navigator.of(context).pop();
             }
           )
@@ -65,8 +67,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         trailing: Icon(Icons.edit),
                         onTap: () async {
                           await showInformationDialog(context);
-                        },
+                        }
               ),
+                  Text("$_name"),
                   ListTile(
                         title: Text("Age"),
                         trailing: Icon(Icons.edit),
@@ -116,6 +119,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ListTile(
                     title: Text("Critical Medical Conditions"),
                   ),
+                  Text(" Your medical conditions here"),
                   ListTile(
                     title: Text("Emergency Contact"),
                   ),
