@@ -6,6 +6,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  int _currentIndex = 1;
   String _name = "";
   TextEditingController _nameCont;
   @override
@@ -131,7 +132,30 @@ class _ProfilePageState extends State<ProfilePage> {
             )
           ]
         )
-    )
+    ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        onTap: (value) {
+          // Respond to item press.
+          setState(() => _currentIndex = value);
+        },
+      items: [
+        BottomNavigationBarItem(
+          icon: new Icon(Icons.home),
+          title: Text('Home'),
+        ),
+        BottomNavigationBarItem(
+          icon: new Icon(Icons.person),
+          title: Text('Profile'),
+        ),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Profile')
+        )
+      ],
+    ),
     );
   }
 }

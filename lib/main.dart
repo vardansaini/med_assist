@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         '/home_page' : (BuildContext context) => HomePage(),
         '/medicines' : (BuildContext context) => MedicinesPage(),
       },
-      home: ProfilePage(),
+      home: HomePage(),
     );
   }
 }
