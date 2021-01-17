@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/help_page': (BuildContext context) => HelpPage(),
         '/navigator_page': (BuildContext context) => Navigator(),
         '/profileSetUp': (BuildContext context) => ProfilePageSetup(),
+        '/google_map': (BuildContext context) => MapPage(),
       },
       home: HomePage(),
     );
