@@ -9,14 +9,33 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
 
-  Widget _buildLoginBtn1() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: 160.0,
-      height: 180.0,
-      child: RaisedButton(
-        elevation: 5.0,
-        onPressed: () {
+  void _buttonPressed(int iconSel) {
+    switch (iconSel) {
+      case 1:
+        {
+          Navigator.of(context).pushNamed('/profile_page');
+        }
+        break;
+      case 2:
+        {
+          Navigator.of(context).pushNamed('/login_page');
+        }
+        break;
+      case 3:
+        {}
+        break;
+      case 4:
+        {
+          Navigator.of(context).pushNamed('/medicines');
+        }
+        break;
+      case 5:
+        {
+          //Navigator.of(context).pushNamed('');
+        }
+        break;
+    }
+  }
 
         },
         padding: EdgeInsets.all(15.0),
