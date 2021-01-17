@@ -8,134 +8,189 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-
-  void _buttonPressed(int iconSel) {
-    switch (iconSel) {
-      case 1:
-        {
+  Widget _buildLoginBtn1() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5.0),
+      width: 160.0,
+      height: 160.0,
+      child: FlatButton(
+        onPressed: () {
           Navigator.of(context).pushNamed('/profile_page');
-        }
-        break;
-      case 2:
-        {
-          Navigator.of(context).pushNamed('/login_page');
-        }
-        break;
-      case 3:
-        {}
-        break;
-      case 4:
-        {
-          Navigator.of(context).pushNamed('/medicines');
-        }
-        break;
-      case 5:
-        {
-          //Navigator.of(context).pushNamed('');
-        }
-        break;
-    }
-  }
-
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        // color: Colors.white,
-        child: Text(
-          'Profile',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
+        color: Colors.redAccent[200],
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.person, size: 75, color: Colors.white,),
+            Text(
+              'Profile',
+              style: TextStyle(
+                color: Colors.white,
+                letterSpacing: 1.5,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'OpenSans',
+              ),
+            ),
+          ]
+        )
 
-          ),textAlign: TextAlign.center,
-        ),
       ),
     );
   }
   Widget _buildLoginBtn2() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
+      padding: EdgeInsets.symmetric(vertical: 5.0),
       width: 160.0,
-      height: 180.0,
-      child: RaisedButton(
-        elevation: 5.0,
+      height: 160.0,
+      child: FlatButton(
         onPressed: () {
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        // color: Colors.white,
-        child: Text(
-          'Medications',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
+        color: Colors.redAccent[200],
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.home, size: 75, color: Colors.white),
+            Text(
+              'Medications',
+              style: TextStyle(
+                color: Colors.white,
+                letterSpacing: 1.5,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'OpenSans',
+              ),
+            ),
+          ]
+        )
       ),
     );
   }
   Widget _buildLoginBtn3() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
+      padding: EdgeInsets.symmetric(vertical: 5.0),
       width: 160.0,
-      height: 180.0,
-      child: RaisedButton(
-        elevation: 5.0,
+      height: 160.0,
+      child: FlatButton(
         onPressed: () {
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        // color: Colors.white,
-        child: Text(
-          '',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
+        color: Colors.redAccent[200],
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.home, size: 75, color: Colors.white),
+            Text(
+              'Medications',
+              style: TextStyle(
+                color: Colors.white,
+                letterSpacing: 1.5,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'OpenSans',
+              ),
+            ),
+          ],
+        )
       ),
     );
   }
   Widget _buildLoginBtn4() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
+      padding: EdgeInsets.symmetric(vertical: 5.0),
       width: 160.0,
-      height: 180.0,
-      child: RaisedButton(
-        elevation: 5.0,
+      height: 160.0,
+      child: FlatButton(
         onPressed: () {
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        // color: Colors.white,
-        child: Text(
-          'Workout',
-          style: TextStyle(
-            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
+        color: Colors.redAccent[200],
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.home, size: 75, color: Colors.white),
+            Text(
+              'Medications',
+              style: TextStyle(
+                color: Colors.white,
+                letterSpacing: 1.5,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'OpenSans',
+              ),
+            ),
+          ],
+        )
       ),
     );
   }
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.deepOrange[50],
+                ),
+              ),
+            Container(
+              height: double.infinity,
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 40.0,
+                  vertical: 120.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Home',
+                      style: TextStyle(
+                        color: Colors.indigo[900],
+                        fontFamily: 'OpenSans',
+                        fontSize: 50.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    //SizedBox(height: 20.0,),
+                    Row(crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        _buildLoginBtn1(),
+                        Spacer(),
+                        _buildLoginBtn2(),],),
+                    Row(crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        _buildLoginBtn3(),
+                        Spacer(),
+                        _buildLoginBtn4(),],),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    ),
+   
+  );
 }
+}
+

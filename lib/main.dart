@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucifer/help_page.dart';
 import 'package:lucifer/login_page.dart';
 import 'package:lucifer/medicines.dart';
 import 'package:lucifer/profile_page.dart';
@@ -25,8 +26,10 @@ class MyApp extends StatelessWidget {
         '/home_page' : (BuildContext context) => HomePage(),
         '/medicines' : (BuildContext context) => MedicinesPage(),
         '/login_page' : (BuildContext context) => LoginPage(),
+        '/help_page' : (BuildContext context) => HelpPage(),
+        '/navigator_page': (BuildContext context) => Navigator()
       },
-      home: HomePage(),
+      home:HomePage(),
     );
   }
 }
