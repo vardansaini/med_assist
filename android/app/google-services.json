@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "783780678579",
+    "project_id": "med-assist-fd93b",
+    "storage_bucket": "med-assist-fd93b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783780678579:android:efea6e8f514a62b84259c6",
+        "android_client_info": {
+          "package_name": "com.example.lucifer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783780678579-o3bepftrsmgf147ouhmutictek320sdp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lucifer",
+            "certificate_hash": "5dc140d7dab0b1eb45e1787ec28ec9c4b672f712"
+          }
+        },
+        {
+          "client_id": "783780678579-336fg4rbtnjgkc8ddvk2tg3q8up351uc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuCB96gM4JSZAR-_utK9T8rW60A3HVtNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783780678579-336fg4rbtnjgkc8ddvk2tg3q8up351uc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
