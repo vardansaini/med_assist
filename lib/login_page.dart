@@ -9,18 +9,24 @@ class LoginPage extends StatefulWidget{
   LoginPageState createState() => LoginPageState();
 }
 class LoginPageState extends State<LoginPage>{
-  TextEditingController _phoneCont;
+  final _phoneCont = TextEditingController();
   TextEditingController _passCont;
   TextEditingController _codeCont;
+  String _phone = "";
   void initState() {
     super.initState();
-    _phoneCont = TextEditingController();
     _passCont = TextEditingController();
     _codeCont = TextEditingController();
+    _phoneCont.addListener(_printValue);
+  }
+  _printValue(){
+    setState(() {
+      _phone = _phoneCont.text;
+    });
   }
   @override
   void dispose() {
-    _phoneCont.dispose();
+    _phoneCont.removeListener(_printValue);
     _passCont.dispose();
     _codeCont.dispose();
     super.dispose();
@@ -70,6 +76,8 @@ class LoginPageState extends State<LoginPage>{
         }, codeAutoRetrievalTimeout: null);
 
   }
+
+ */
   Widget _phoneTextBox() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +94,6 @@ class LoginPageState extends State<LoginPage>{
               }
               return null;
             },
-            controller: _phoneCont,
             //onSaved: (input) => _email = input,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
@@ -103,54 +110,13 @@ class LoginPageState extends State<LoginPage>{
               hintText: 'Enter your Phone No',
               hintStyle: kHintTextStyle,
             ),
+            controller: _phoneCont,
           ),
         ),
       ],
     );
   }
 
-  Widget _passwordTextBox() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: Form( child: TextFormField(
-            validator: (input){
-              if(input.length < 6) {
-                return 'Please enter a valid password';
-              }
-              return null;
-            },
-            controller: _passCont,
-            //onSaved: (input) => _password = input,
-            obscureText: true, /*onChanged: (value){
-              setState(() {
-                _password = value;
-              }*/
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your Password',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _loginBtn() {
     return Container(
@@ -159,7 +125,7 @@ class LoginPageState extends State<LoginPage>{
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
-          print(_phoneCont.text.trim());
+          print(_phoneCont.text);
         // signIn(_phoneCont.text.trim(), context);
           //final  user = await _auth.currentUser();
         },
@@ -216,8 +182,13 @@ class LoginPageState extends State<LoginPage>{
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      _phoneTextBox(),
-                      _loginBtn()
+                      TextFormField(controller: _phoneCont,),
+                      RaisedButton(onPressed: (){
+                        setState(() {
+                          _phone = _phoneCont.text;
+                        });
+                      }),
+                      Text(_phone),
                     ],
                   ),
                 ),
