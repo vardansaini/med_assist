@@ -24,7 +24,7 @@ class HomePageState extends State<HomePage> {
         break;
       case 2:
         {
-          print(MediaQuery.of(context).size.height);
+          Navigator.of(context).pushNamed('/login_page');
         }
         break;
       case 3:
