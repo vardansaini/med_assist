@@ -3,6 +3,7 @@ import 'package:lucifer/login_page.dart';
 import 'package:lucifer/medicines.dart';
 import 'package:lucifer/profile_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:lucifer/volunteer_profile.dart';
 
 import 'home_page.dart';
 import 'home_page.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         '/medicines' : (BuildContext context) => MedicinesPage(),
         '/login_page' : (BuildContext context) => LoginPage(),
       },
-      home: HomePage(),
+      home: VolunteerPage(),
     );
   }
 }
