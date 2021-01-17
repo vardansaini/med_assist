@@ -201,9 +201,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     icon: Icon(Icons.person), label: 'Profile')
               ],
             ),
-            ]
-                )
-          ),
           );
         });
   }
