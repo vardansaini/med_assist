@@ -46,7 +46,7 @@ class HomePageState extends State<HomePage> {
   Widget _buildButton(int iconSel, int butSize) {
     return MaterialButton(
       elevation: 8.0,
-      color: (iconSel==3) ? Colors.indigo[700] : Colors.redAccent,
+      color: (iconSel == 3) ? Colors.indigo[700] : Colors.redAccent,
       padding: EdgeInsets.all(16.0),
       shape: CircleBorder(),
       onPressed: () {
@@ -94,9 +94,9 @@ class HomePageState extends State<HomePage> {
                     height: double.infinity,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: Colors.deepOrange[50],
-                      ),
+                      color: Colors.deepOrange[50],
                     ),
+                  ),
                   Container(
                     height: double.infinity,
                     child: SingleChildScrollView(

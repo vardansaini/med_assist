@@ -35,8 +35,18 @@ dependencies:
   firebase_database:
   firebase_storage:
   firebase_core:
+  http:
+  json_serializable:
+  location:
+  rxdart:
+  geoflutterfire:
+  geolocator:
+
 
 dev_dependencies:
+  pedantic:
+  build_runner:
+
   flutter_test:
     sdk: flutter
   integration_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucifer/google_map.dart';
 import 'package:lucifer/medicines.dart';
 import 'package:lucifer/profile_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,14 +20,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Med Assist',
-      routes: <String, WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         '/profile_page': (BuildContext context) => ProfilePage(),
-        '/home_page' : (BuildContext context) => HomePage(),
-        '/medicines' : (BuildContext context) => MedicinesPage(),
+        '/home_page': (BuildContext context) => HomePage(),
+        '/medicines': (BuildContext context) => MedicinesPage(),
       },
-      home: HomePage(),
+      home: MapPage(),
     );
   }
 }
-
-
