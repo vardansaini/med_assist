@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,20 +9,26 @@ class LoginPage extends StatefulWidget{
   LoginPageState createState() => LoginPageState();
 }
 class LoginPageState extends State<LoginPage>{
-  TextEditingController _emailCont;
+  TextEditingController _phoneCont;
   TextEditingController _passCont;
   void initState() {
     super.initState();
-    _emailCont = TextEditingController();
+    _passCont = TextEditingController();
     _passCont = TextEditingController();
   }
   @override
   void dispose() {
-    _emailCont.dispose();
+    _passCont.dispose();
     _passCont.dispose();
     super.dispose();
   }
 
+  Future<void> signIn() async{
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    _auth.verifyPhoneNumber(phoneNumber:
+        , verificationCompleted: null, verificationFailed: null, codeSent: null, codeAutoRetrievalTimeout: null)
+
+  }
   Widget _emailTextBox() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
