@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lucifer/data.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -164,7 +165,9 @@ class HomePageState extends State<HomePage> {
       width: 300.0,
       height: 100.0,
       child: FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            requestNotifications();
+          },
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
