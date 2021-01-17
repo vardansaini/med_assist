@@ -11,25 +11,66 @@ class LoginPage extends StatefulWidget{
 class LoginPageState extends State<LoginPage>{
   TextEditingController _phoneCont;
   TextEditingController _passCont;
+  TextEditingController _codeCont;
   void initState() {
     super.initState();
+    _phoneCont = TextEditingController();
     _passCont = TextEditingController();
-    _passCont = TextEditingController();
+    _codeCont = TextEditingController();
   }
   @override
   void dispose() {
+    _phoneCont.dispose();
     _passCont.dispose();
-    _passCont.dispose();
+    _codeCont.dispose();
     super.dispose();
   }
-
-  Future<void> signIn() async{
+/*
+  Future<void> signIn(String phone, BuildContext context) async{
     final FirebaseAuth _auth = FirebaseAuth.instance;
-    _auth.verifyPhoneNumber(phoneNumber:
-        , verificationCompleted: null, verificationFailed: null, codeSent: null, codeAutoRetrievalTimeout: null)
+    _auth.verifyPhoneNumber(phoneNumber:phone,
+        verificationCompleted: (AuthCredential credential) async{
+          UserCredential authResult = await _auth.signInWithCredential(credential);
+          User user = authResult.user;
+          if(user != null){
+            Navigator.of(context).pushNamed('/home_page');
+          }
+        }, verificationFailed: (FirebaseAuthException e){
+      print(e);
+        }, codeSent: (String verificationId, [int forceResendingToken]){
+      showDialog(context: context,
+      barrierDismissible: false,
+      builder: (context){
+        return AlertDialog(
+          title: Text("Give The Code"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextFormField(
+                controller: _codeCont,
+              )
+            ],
+          ),
+          actions: <Widget>[
+            FlatButton(onPressed: () async {
+              AuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId,
+                  smsCode: _codeCont.text.trim());
+              UserCredential authResult = await _auth.signInWithCredential(credential);
+              User user = authResult.user;
+              if(user != null){
+                Navigator.of(context).pushNamed('/home_page');
+              }
+              else{
+                print("Error");
+              }
+            }, child: Text("Confirm"))
+          ],
+        );
+      });
+        }, codeAutoRetrievalTimeout: null);
 
   }
-  Widget _emailTextBox() {
+  Widget _phoneTextBox() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -41,11 +82,11 @@ class LoginPageState extends State<LoginPage>{
           child: TextFormField(
             validator: (input){
               if(input.isEmpty) {
-                return 'Please provide a correct email address';
+                return 'Please provide a correct Phone No';
               }
               return null;
             },
-            controller: _emailCont,
+            controller: _phoneCont,
             //onSaved: (input) => _email = input,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
@@ -59,7 +100,7 @@ class LoginPageState extends State<LoginPage>{
                 Icons.email,
                 color: Colors.white,
               ),
-              hintText: 'Enter your Email',
+              hintText: 'Enter your Phone No',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -118,7 +159,8 @@ class LoginPageState extends State<LoginPage>{
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
-         // signIn();
+          print(_phoneCont.text.trim());
+        // signIn(_phoneCont.text.trim(), context);
           //final  user = await _auth.currentUser();
         },
         padding: EdgeInsets.all(15.0),
@@ -174,8 +216,7 @@ class LoginPageState extends State<LoginPage>{
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      _emailTextBox(),
-                      _passwordTextBox(),
+                      _phoneTextBox(),
                       _loginBtn()
                     ],
                   ),
