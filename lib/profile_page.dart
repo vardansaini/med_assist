@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lucifer/data.dart';
+import 'package:lucifer/login_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -73,7 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  //final FirebaseAuth _auth = FirebaseAuth.instance;
   Widget _signOutButton() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5.0),
@@ -81,13 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
       height: 100.0,
       child: FlatButton(
           onPressed: () {
-                () { () async{
-              await _auth.signOut().then((_){
-                Navigator.of(context).pushNamed('/login_page');
-              });
-            };
-
-            };
+            signOut(context);
           },
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(

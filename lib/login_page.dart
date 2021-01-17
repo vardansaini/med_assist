@@ -9,6 +9,16 @@ class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
+Future signOut(BuildContext context) async{
+  try{
+    return await _auth.signOut().then((_){
+      Navigator.of(context).pushNamed('/login_page');
+    });
+  }catch(e){
+    print(e.toString());
+    return null;
+  }
+}
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
@@ -293,14 +303,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-  Future signOut() async{
-    try{
-      return await _auth.signOut();
-    }catch(e){
-      print(e.toString());
-      return null;
-    }
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
