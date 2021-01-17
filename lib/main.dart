@@ -9,7 +9,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:lucifer/signup_page.dart';
 
 import 'home_page.dart';
-import 'home_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Med Assist',
-      routes: <String, WidgetBuilder>{
+      routes: <String, WidgetBuilder> {
         '/profile_page': (BuildContext context) => ProfilePage(),
         '/home_page': (BuildContext context) => HomePage(),
         '/medicines': (BuildContext context) => MedicinesPage(),
