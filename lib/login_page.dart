@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
       formState.save();
       try{
         _auth.signInWithEmailAndPassword(email: _emailCont.text.trim(), password: _passCont.text.trim()).then((_){
-          Navigator.of(context).pushNamed('/home_page');
+          Navigator.of(context).pushNamed('/help_page');
         });
       }catch(e){
         print(e.message);
