@@ -13,20 +13,43 @@ class HomePageState extends State<HomePage>{
     super.initState();
     _button1Pressed = 0;
   }
+  void _buttonPressed(int iconSel){
+    switch (iconSel){
+      case 1: {
+        Navigator.of(context).pushNamed('/profile_page');
+      }break;
+      case 2: {
+
+      }break;
+      case 3: {
+
+      }break;
+      case 4: {
+        Navigator.of(context).pushNamed('/medicines');
+      }break;
+      case 5: {
+        //Navigator.of(context).pushNamed('');
+      }break;
+
+    }
+
+  }
   Widget _buildButton(int iconSel, int butSize) {
     return MaterialButton(
-      color: ( _button1Pressed == 1) ? Colors.blue : Colors.black,
+      color: (true) ? Colors.blue : Colors.black,
       padding: EdgeInsets.all(16.0),
       shape: CircleBorder(),
       onPressed: () {
         setState(() {
           _button1Pressed = 1;
+          _buttonPressed(iconSel);
         });
       },
       // color: Colors.white,
-      child: Icon((iconSel==1 ? Icons.person :
+      child: iconSel == 3 ? Text("Help") :
+      Icon((iconSel==1 ? Icons.person :
       (iconSel == 2 ? Icons.house_outlined:
-      ( iconSel == 3 ? Icons.assignment : Icons.backpack))), size: (butSize == 1 ? 70 : 150)),
+      ( iconSel == 4 ? Icons.assignment : Icons.backpack))), size: (butSize == 1 ? 70 : 150)),
     );
   }
 

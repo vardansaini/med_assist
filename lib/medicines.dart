@@ -16,7 +16,7 @@ class _MedicinesPageState extends State<MedicinesPage> {
             leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  // Navigate to MainPage
+                  Navigator.of(context).pushNamed('/home_page');
                 }
             )
         )

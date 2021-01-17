@@ -47,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            // Navigate to MainPage
+            Navigator.of(context).pushNamed('/home_page');
           }
         )
       ),

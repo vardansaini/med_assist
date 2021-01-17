@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lucifer/medicines.dart';
 import 'package:lucifer/profile_page.dart';
 
 import 'home_page.dart';
@@ -15,6 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Med Assist',
       routes: <String, WidgetBuilder> {
         '/profile_page': (BuildContext context) => ProfilePage(),
+        '/home_page' : (BuildContext context) => HomePage(),
+        '/medicines' : (BuildContext context) => MedicinesPage(),
       },
       home: ProfilePage(),
     );
