@@ -7,6 +7,7 @@ import 'package:lucifer/profileSetUp.dart';
 import 'package:lucifer/profile_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lucifer/signup_page.dart';
+import 'package:lucifer/src/medical_reports.dart';
 
 import 'home_page.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/profileSetUp': (BuildContext context) => ProfilePageSetup(),
         '/google_map': (BuildContext context) => MapPage(),
         '/signup_page' : (BuildContext context) => SignupPage(),
+        '/medical_reports': (BuildContext context) => MedicalReportsPage(),
       },
       home: LoginScreen(),
     );

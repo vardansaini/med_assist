@@ -11,7 +11,7 @@ class _MedicinesPageState extends State<MedicinesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.tealAccent[700],
           title: Text("Medicines"),
           centerTitle: true,
           leading: IconButton(

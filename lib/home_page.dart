@@ -79,7 +79,9 @@ class HomePageState extends State<HomePage> {
       width: 160.0,
       height: 160.0,
       child: FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed('/medical_reports');
+          },
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -158,7 +160,7 @@ class HomePageState extends State<HomePage> {
   Widget _buildLoginBtn5() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5.0),
-      width: 300.0,
+      width: 350.0,
       height: 100.0,
       child: FlatButton(
           onPressed: () {
