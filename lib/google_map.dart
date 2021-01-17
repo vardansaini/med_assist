@@ -64,8 +64,8 @@ class _MapPageState extends State<MapPage> {
                 GoogleMap(
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: CameraPosition(
-                    target: const LatLng(53.5461, 113.4938),
-                    zoom: 2,
+                    target: const LatLng(53, 0),
+                    zoom: 4,
                   ),
                   myLocationEnabled: true,
                   markers: _markers.values.toSet(),

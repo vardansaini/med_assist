@@ -1,11 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lucifer/data.dart';
 
 class HomePage extends StatefulWidget {
   @override
   HomePageState createState() => HomePageState();
 }
+/*
+() { () async{
+            await _auth.signOut();
+          };
+          //Navigator.of(context).pushNamed('/login_page');
+		  }
+		  
+
+ */
 
 class HomePageState extends State<HomePage> {
   Widget _buildLoginBtn1() {
@@ -139,16 +149,16 @@ class HomePageState extends State<HomePage> {
                   fontFamily: 'OpenSans',
                 ),
               ),
-          Text(
-            'Volunteer',
-            style: TextStyle(
-              color: Colors.white,
-              letterSpacing: 1.5,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'OpenSans',
-            ),
-          ),
+              Text(
+                'Volunteer',
+                style: TextStyle(
+                  color: Colors.white,
+                  letterSpacing: 1.5,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'OpenSans',
+                ),
+              ),
             ],
           )),
     );
@@ -160,7 +170,9 @@ class HomePageState extends State<HomePage> {
       width: 300.0,
       height: 100.0,
       child: FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            requestNotifications();
+          },
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -178,7 +190,8 @@ class HomePageState extends State<HomePage> {
                   fontSize: 45.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'OpenSans',
-                ),textAlign: TextAlign.center,
+                ),
+                textAlign: TextAlign.center,
               ),
             ],
           )),

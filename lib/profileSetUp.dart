@@ -157,51 +157,12 @@ class _ProfilePageSetupState extends State<ProfilePageSetup> {
                           },
                         ),
                       ])),
-                  Card(
-                    elevation: 4.0,
-                    margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 1.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: Column(
-                      children: <Widget>[
-                        ListTile(
-                          title: Text("Critical Medical Conditions"),
-                        ),
-                        Text(" Your medical conditions here"),
-                        ListTile(
-                          title: Text("Emergency Contact"),
-                        ),
-                        ListTile(
-                          title: Text("Alberta Health Card"),
-                        )
-                      ],
-                    ),
-                  ),
+
                 _buildLoginBtn1(),
                 ]
                 )
             ),
 
-            bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              currentIndex: _currentIndex,
-              onTap: (value) {
-                // Respond to item press.
-                setState(() => _currentIndex = value);
-              },
-              items: [
-                BottomNavigationBarItem(
-                  icon: new Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: new Icon(Icons.person),
-                  label: 'Profile',
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.person), label: 'Profile')
-              ],
-            ),
           );
         });
   }

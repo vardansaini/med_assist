@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lucifer/data.dart';
-import 'package:lucifer/signup_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -10,7 +9,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   int _currentIndex = 1;
-  String _name = "";
+  String _name = '';
   TextEditingController _nameCont;
   @override
   void initState() {
@@ -45,6 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ]);
         });
   }
+
   Widget _buildLoginBtn1() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5.0),
@@ -52,9 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
       height: 80.0,
       child: RaisedButton(
         onPressed: () {
-
           //Navigator.of(context).pushNamed('/home_page');
-
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -71,15 +69,14 @@ class _ProfilePageState extends State<ProfilePage> {
             fontFamily: 'OpenSans',
           ),
         ),
-
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    String userId = "test";
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    var userId = 'test';
+    var users = FirebaseFirestore.instance.collection('users');
     return StreamBuilder<DocumentSnapshot>(
         stream: users.doc(userId).snapshots(),
         builder:
@@ -89,10 +86,10 @@ class _ProfilePageState extends State<ProfilePage> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return Text('Loading');
           }
 
-          Map<String, dynamic> userInfo = snapshot.data.data();
+          var userInfo = snapshot.data.data();
 
           return Scaffold(
             appBar: AppBar(
@@ -113,51 +110,51 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(10.0)),
                   child: Column(children: <Widget>[
                     ListTile(
-                        title: Text("Name"),
-                        subtitle: Text(userInfo["name"] ?? ""),
+                        title: Text('Name'),
+                        subtitle: Text(userInfo['name'] ?? ''),
                         trailing: Icon(Icons.edit),
                         onTap: () async {
-                          await showInformationDialog(context, userId, "name");
+                          await showInformationDialog(context, userId, 'name');
                         }),
                     ListTile(
-                      title: Text("Age"),
-                      subtitle: Text(userInfo["age"].toString() ?? ""),
+                      title: Text('Age'),
+                      subtitle: Text(userInfo['age'].toString() ?? ''),
                       trailing: Icon(Icons.edit),
                       onTap: () async {
-                        await showInformationDialog(context, userId, "age");
+                        await showInformationDialog(context, userId, 'age');
                       },
                     ),
                     ListTile(
-                      title: Text("Gender"),
-                      subtitle: Text(userInfo["gender"] ?? ""),
+                      title: Text('Gender'),
+                      subtitle: Text(userInfo['gender'] ?? ''),
                       trailing: Icon(Icons.edit),
                       onTap: () async {
-                        await showInformationDialog(context, userId, "gender");
+                        await showInformationDialog(context, userId, 'gender');
                       },
                     ),
                     ListTile(
-                      title: Text("Blood Group"),
-                      subtitle: Text(userInfo["blood_group"] ?? ""),
+                      title: Text('Blood Group'),
+                      subtitle: Text(userInfo['blood_group'] ?? ''),
                       trailing: Icon(Icons.edit),
                       onTap: () async {
                         await showInformationDialog(
-                            context, userId, "blood_group");
+                            context, userId, 'blood_group');
                       },
                     ),
                     ListTile(
-                      title: Text("Address"),
-                      subtitle: Text(userInfo["address"] ?? ""),
+                      title: Text('Address'),
+                      subtitle: Text(userInfo['address'] ?? ''),
                       trailing: Icon(Icons.edit),
                       onTap: () async {
-                        await showInformationDialog(context, userId, "address");
+                        await showInformationDialog(context, userId, 'address');
                       },
                     ),
                     ListTile(
-                      title: Text("Contact"),
-                      subtitle: Text(userInfo["contact"] ?? ""),
+                      title: Text('Contact'),
+                      subtitle: Text(userInfo['contact'] ?? ''),
                       trailing: Icon(Icons.edit),
                       onTap: () async {
-                        await showInformationDialog(context, userId, "contact");
+                        await showInformationDialog(context, userId, 'contact');
                       },
                     ),
                   ])),
@@ -169,14 +166,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   children: <Widget>[
                     ListTile(
-                      title: Text("Critical Medical Conditions"),
+                      title: Text('Critical Medical Conditions'),
                     ),
-                    Text(" Your medical conditions here"),
+                    Text('Your medical conditions here'),
                     ListTile(
-                      title: Text("Emergency Contact"),
+                      title: Text('Emergency Contact'),
                     ),
                     ListTile(
-                      title: Text("Alberta Health Card"),
+                      title: Text('Alberta Health Card'),
                     )
                   ],
                 ),
@@ -191,11 +188,11 @@ class _ProfilePageState extends State<ProfilePage> {
               },
               items: [
                 BottomNavigationBarItem(
-                  icon: new Icon(Icons.home),
+                  icon: Icon(Icons.home),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: new Icon(Icons.person),
+                  icon: Icon(Icons.person),
                   label: 'Profile',
                 ),
                 BottomNavigationBarItem(

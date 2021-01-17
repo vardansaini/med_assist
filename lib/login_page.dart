@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
       formState.save();
       try{
         _auth.signInWithEmailAndPassword(email: _emailCont.text.trim(), password: _passCont.text.trim()).then((_){
-          Navigator.of(context).pushNamed('/home_page');
+          Navigator.of(context).pushNamed('/help_page');
         });
       }catch(e){
         print(e.message);
@@ -293,7 +293,14 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
+  Future signOut() async{
+    try{
+      return await _auth.signOut();
+    }catch(e){
+      print(e.toString());
+      return null;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
