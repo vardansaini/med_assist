@@ -7,7 +7,7 @@ import 'package:lucifer/profileSetUp.dart';
 import 'package:lucifer/profile_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lucifer/signup_page.dart';
-import 'package:lucifer/src/medical_reports.dart';
+import 'package:lucifer/medical_reports.dart';
 
 import 'home_page.dart';
 

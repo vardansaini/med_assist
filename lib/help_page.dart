@@ -23,7 +23,7 @@ class HelpPageState extends State<HelpPage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.indigo[900],
+          color: Colors.tealAccent[700],
           child: Text(
             'I need help!',
             style: TextStyle(
@@ -50,7 +50,7 @@ class HelpPageState extends State<HelpPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        color: Colors.indigo[900],
+        color: Colors.tealAccent[700],
         child: Text(
           'I want to volunteer!',
           style: TextStyle(
@@ -89,7 +89,7 @@ class HelpPageState extends State<HelpPage> {
                 height: double.infinity,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.teal[100],
+                  color: Colors.white,
                 ),
               ),
               Container(
