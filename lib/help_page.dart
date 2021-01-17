@@ -15,7 +15,7 @@ class HelpPageState extends State<HelpPage> {
       height: 80.0,
       child: RaisedButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            //Navigator.of(context).pop();
             Navigator.of(context).pushNamed('/profileSetUp');
 
           },
@@ -45,6 +45,8 @@ class HelpPageState extends State<HelpPage> {
       height: 80.0,
       child: RaisedButton(
         onPressed: () {
+          //Navigator.of(context).pop();
+          Navigator.of(context).pushNamed('/google_map');
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
