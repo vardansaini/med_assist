@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  FirebaseAuth _auth = FirebaseAuth.instance;
   Widget _buildLoginBtn1() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5.0),
@@ -48,8 +50,10 @@ class HomePageState extends State<HomePage> {
       width: 160.0,
       height: 160.0,
       child: FlatButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed('/login_page');
+          onPressed: () { () async{
+            await _auth.signOut();
+          };
+          Navigator.of(context).pushNamed('/login_page');
           },
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
