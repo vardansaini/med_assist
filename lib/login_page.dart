@@ -293,7 +293,14 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
+  Future signOut() async{
+    try{
+      return await _auth.signOut();
+    }catch(e){
+      print(e.toString());
+      return null;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

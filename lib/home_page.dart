@@ -7,6 +7,15 @@ class HomePage extends StatefulWidget {
   @override
   HomePageState createState() => HomePageState();
 }
+/*
+() { () async{
+            await _auth.signOut();
+          };
+          Navigator.of(context).pushNamed('/login_page');
+		  }
+		  
+
+ */
 
 class HomePageState extends State<HomePage> {
   Widget _buildLoginBtn1() {
@@ -142,16 +151,16 @@ class HomePageState extends State<HomePage> {
                   fontFamily: 'OpenSans',
                 ),
               ),
-          Text(
-            'Volunteer',
-            style: TextStyle(
-              color: Colors.white,
-              letterSpacing: 1.5,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'OpenSans',
-            ),
-          ),
+              Text(
+                'Volunteer',
+                style: TextStyle(
+                  color: Colors.white,
+                  letterSpacing: 1.5,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'OpenSans',
+                ),
+              ),
             ],
           )),
     );

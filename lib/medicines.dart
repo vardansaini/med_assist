@@ -11,8 +11,13 @@ class _MedicinesPageState extends State<MedicinesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+<<<<<<< HEAD
           backgroundColor: Colors.tealAccent[700],
           title: Text("Medicines"),
+=======
+          backgroundColor: Colors.redAccent,
+          title: Text('Medicines'),
+>>>>>>> f7a89a475f4830986adde91a154727a1ca1cb219
           centerTitle: true,
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
@@ -31,7 +36,7 @@ class MedicinesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    var users = FirebaseFirestore.instance.collection('users');
     return StreamBuilder<DocumentSnapshot>(
       stream: users.doc(documentId).snapshots(),
       builder:
@@ -41,14 +46,14 @@ class MedicinesList extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return Text('Loading');
         }
 
         return ListView(
           children: snapshot.data
-              .data()["medicines"]
+              .data()['medicines']
               .entries
-              .map<ListTile>((MapEntry<String, dynamic> entry) => new ListTile(
+              .map<ListTile>((MapEntry<String, dynamic> entry) => ListTile(
                   title: Text(entry.key), subtitle: Text(entry.value)))
               .toList(),
         );
