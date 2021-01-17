@@ -8,76 +8,56 @@ class LoginPage extends StatefulWidget{
   @override
   LoginPageState createState() => LoginPageState();
 }
+
 class LoginPageState extends State<LoginPage>{
   final _phoneCont = TextEditingController();
-  TextEditingController _passCont;
-  TextEditingController _codeCont;
-  String _phone = "";
-  void initState() {
-    super.initState();
-    _passCont = TextEditingController();
-    _codeCont = TextEditingController();
-    _phoneCont.addListener(_printValue);
-  }
-  _printValue(){
-    setState(() {
-      _phone = _phoneCont.text;
-    });
-  }
-  @override
-  void dispose() {
-    _phoneCont.removeListener(_printValue);
-    _passCont.dispose();
-    _codeCont.dispose();
-    super.dispose();
-  }
-/*
+  final _codeCont = TextEditingController();
+  String _phone, _code;
+
   Future<void> signIn(String phone, BuildContext context) async{
     final FirebaseAuth _auth = FirebaseAuth.instance;
-    _auth.verifyPhoneNumber(phoneNumber:phone,
+    _auth.verifyPhoneNumber(phoneNumber:phone, timeout: Duration(seconds: 100),
         verificationCompleted: (AuthCredential credential) async{
+      Navigator.of(context).pop();
           UserCredential authResult = await _auth.signInWithCredential(credential);
           User user = authResult.user;
           if(user != null){
             Navigator.of(context).pushNamed('/home_page');
           }
         }, verificationFailed: (FirebaseAuthException e){
-      print(e);
+          print(e);
         }, codeSent: (String verificationId, [int forceResendingToken]){
-      showDialog(context: context,
-      barrierDismissible: false,
-      builder: (context){
-        return AlertDialog(
-          title: Text("Give The Code"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TextFormField(
-                controller: _codeCont,
-              )
-            ],
-          ),
-          actions: <Widget>[
-            FlatButton(onPressed: () async {
-              AuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId,
-                  smsCode: _codeCont.text.trim());
-              UserCredential authResult = await _auth.signInWithCredential(credential);
-              User user = authResult.user;
-              if(user != null){
-                Navigator.of(context).pushNamed('/home_page');
-              }
-              else{
-                print("Error");
-              }
-            }, child: Text("Confirm"))
-          ],
-        );
-      });
-        }, codeAutoRetrievalTimeout: null);
-
+          showDialog(context: context,
+              barrierDismissible: false,
+              builder: (context){
+                return AlertDialog(
+                  title: Text("Give The Code"),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      TextFormField(
+                        controller: _codeCont,
+                      )
+                    ],
+                  ),
+                  actions: <Widget>[
+                    FlatButton(onPressed: () async {
+                      AuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId,
+                          smsCode: _codeCont.text.trim());
+                      UserCredential authResult = await _auth.signInWithCredential(credential);
+                      User user = authResult.user;
+                      if(user != null){
+                        Navigator.of(context).pushNamed('/home_page');
+                      }
+                      else{
+                        print("Error");
+                      }
+                    }, child: Text("Confirm"))
+                  ],
+                );
+              });
+        }, codeAutoRetrievalTimeout: (String verificationId){});
   }
-
- */
   Widget _phoneTextBox() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +75,7 @@ class LoginPageState extends State<LoginPage>{
               return null;
             },
             //onSaved: (input) => _email = input,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.phone,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -104,7 +84,7 @@ class LoginPageState extends State<LoginPage>{
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.email,
+                Icons.phone,
                 color: Colors.white,
               ),
               hintText: 'Enter your Phone No',
@@ -116,8 +96,6 @@ class LoginPageState extends State<LoginPage>{
       ],
     );
   }
-
-
   Widget _loginBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
@@ -125,8 +103,12 @@ class LoginPageState extends State<LoginPage>{
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
+          setState(() {
+            _phone = _phoneCont.text;
+          });
+          signIn(_phone, context);
           print(_phoneCont.text);
-        // signIn(_phoneCont.text.trim(), context);
+          // signIn(_phoneCont.text.trim(), context);
           //final  user = await _auth.currentUser();
         },
         padding: EdgeInsets.all(15.0),
@@ -148,53 +130,13 @@ class LoginPageState extends State<LoginPage>{
     );
   }
   Widget build(BuildContext context) {
-    return Scaffold(body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFF73AEF5),
-                      Color(0xFF61A4F1),
-                      Color(0xFF478DE0),
-                      Color(0xFF398AE5),
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 80.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      TextFormField(controller: _phoneCont,),
-                      RaisedButton(onPressed: (){
-                        setState(() {
-                          _phone = _phoneCont.text;
-                        });
-                      }),
-                      Text(_phone),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        )));
+    return Scaffold(body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        _phoneTextBox(),
+        _loginBtn(),
+        Text("$_phone"),
+      ],
+    ),);
   }
 }
