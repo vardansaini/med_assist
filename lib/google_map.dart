@@ -51,7 +51,7 @@ class _MapPageState extends State<MapPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Google Office Locations'),
-        backgroundColor: Colors.green[700],
+        backgroundColor: Colors.blue,
       ),
       body: Column(
         children: [
@@ -60,12 +60,8 @@ class _MapPageState extends State<MapPage> {
               Container(
           height: MediaQuery.of(context).size.height - 80.0,
                 width: double.infinity,
-                child: mapToggle ?
-      GoogleMap(onMapCreated: _onMapCreated, initialCameraPosition: CameraPosition(
-        target: LatLng(currentLocation.latitude, currentLocation.longitude),zoom: 10.0
-      ),):
-      Center(child: Text('Loading.. PLease wait..'),),
-                /*GoogleMap(
+                child:
+                GoogleMap(
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: CameraPosition(
                     target: const LatLng(0, 0),
@@ -88,6 +84,7 @@ class _MapPageState extends State<MapPage> {
                   //onPressed: _addMarker,*/
                 ),
 
+              ),
             ],
           ),
         ],

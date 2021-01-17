@@ -64,6 +64,16 @@ class HelpPageState extends State<HelpPage> {
     );
   }
 
+  Widget _buildImage() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5.0),
+      //width: 330.0,
+      //height: 80.0,
+      child: Image(image: AssetImage('assets/l.png'),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +87,7 @@ class HelpPageState extends State<HelpPage> {
                 height: double.infinity,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.deepOrange[50],
+                  color: Colors.white,
                 ),
               ),
               Container(
@@ -91,7 +101,7 @@ class HelpPageState extends State<HelpPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
+                      /*Text(
                         'Home',
                         style: TextStyle(
                           color: Colors.redAccent[200],
@@ -99,7 +109,9 @@ class HelpPageState extends State<HelpPage> {
                           fontSize: 50.0,
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
+                      ),*/
+                      _buildImage(),
+
                       //SizedBox(height: 20.0,),
                       Row(crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
