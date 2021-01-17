@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lucifer/data.dart';
 
@@ -72,6 +73,46 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  Widget _signOutButton() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5.0),
+      width: 300.0,
+      height: 100.0,
+      child: FlatButton(
+          onPressed: () {
+                () { () async{
+              await _auth.signOut().then((_){
+                Navigator.of(context).pushNamed('/login_page');
+              });
+            };
+
+            };
+          },
+          padding: EdgeInsets.all(15.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          color: Colors.red,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              //Icon(Icons.home, size: 75, color: Colors.white),
+              Text(
+                'Sign Out',
+                style: TextStyle(
+                  color: Colors.white,
+                  letterSpacing: 1.5,
+                  fontSize: 45.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'OpenSans',
+                ),textAlign: TextAlign.center,
+              ),
+            ],
+          )),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
               ),
               ),
-
+                  _signOutButton(),
 
                 ],
                 ),
