@@ -1,48 +1,79 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:lucifer/constants.dart';
+
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-class LoginScreen extends StatefulWidget {
+
+class SignupPage extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignupPageState createState() => _SignupPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupPageState extends State<SignupPage> {
+  //final myController =
   bool _rememberMe = false;
-  String _email;
-  String _password;
+  String _email, _password, _name;
+  TextEditingController _nameCont;
   TextEditingController _emailCont;
   TextEditingController _passCont;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  DatabaseReference _ref;
+  final GlobalKey<FormState>_formKey = GlobalKey<FormState>();
+  bool _success;
+  String _userEmail;
+
   @override
   void initState() {
     super.initState();
+    _nameCont = TextEditingController();
     _emailCont = TextEditingController();
     _passCont = TextEditingController();
+    _ref = FirebaseDatabase.instance.reference();
   }
   @override
   void dispose() {
     _emailCont.dispose();
     _passCont.dispose();
+    _nameCont.dispose();
     super.dispose();
   }
-  Future<void> signIn() async{
-    //Firebase.initializeApp(); //Added by VS
-    final formState = _formKey.currentState;
-    if(formState.validate()){
-      formState.save();
-      try{
-        _auth.signInWithEmailAndPassword(email: _emailCont.text.trim(), password: _passCont.text.trim()).then((_){
-          Navigator.of(context).pushNamed('/home_page');
-        });
-      }catch(e){
-        print(e.message);
-      }
 
-    }
+  void _register() {
+    //await Firebase.initializeApp();
+    _auth.createUserWithEmailAndPassword(email: _emailCont.text.trim(),password: _passCont.text.trim(),).then((_){
+      _verify_user();
+      Navigator.of(context).pushNamed('/login_page');
+    });
+  }
+  Widget _buildNameTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            controller: _nameCont,
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(left: 14.0),
+              hintText: 'Enter your Name',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildEmailTF() {
@@ -55,14 +86,13 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            validator: (input){
-              if(input.isEmpty) {
-                return 'Please provide a correct email address';
+            validator: (String value){
+              if(value.isEmpty) {
+                return 'Please enter correct email';
               }
               return null;
             },
             controller: _emailCont,
-            //onSaved: (input) => _email = input,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
@@ -70,11 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.email,
-                color: Colors.white,
-              ),
+              contentPadding: EdgeInsets.only(left: 14.0),
               hintText: 'Enter your Email',
               hintStyle: kHintTextStyle,
             ),
@@ -83,7 +109,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
-
   Widget _buildPasswordTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,91 +118,60 @@ class _LoginScreenState extends State<LoginScreen> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: Form( child: TextFormField(
-            validator: (input){
-              if(input.length < 6) {
-                return 'Please enter a valid password';
+          child: TextFormField(
+            validator: (String value){
+              if(value.length < 6) {
+                return 'Password length cannot be smaller than 6';
               }
               return null;
             },
             controller: _passCont,
-            //onSaved: (input) => _password = input,
-            obscureText: true, /*onChanged: (value){
-              setState(() {
-                _password = value;
-              }*/
+            obscureText: true,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.white,
-              ),
+              contentPadding: EdgeInsets.only(left: 14.0),
               hintText: 'Enter your Password',
               hintStyle: kHintTextStyle,
             ),
-          ),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        padding: EdgeInsets.only(right: 0.0),
-        child: Text(
-          'Forgot Password?',
-          style: kLabelStyle,
-        ),
-      ),
-    );
+  void pushDataFirebase() {
+    Map<String, String> userEntry = {
+      'Name' : _name,
+      'Email' : _email,
+      'Password' : _password,
+    };
+    _ref.push().set(userEntry);
   }
 
-  Widget _buildRememberMeCheckbox() {
-    return Container(
-      alignment: Alignment.centerLeft,
-      //height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildLoginBtn() {
+  Widget _buildSignUpBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
-          signIn();
-          //final  user = await _auth.currentUser();
+          if(_formKey.currentState.validate()) {
+            _register();
+          }
+          //setState(() {
+          //_auth.createUserWithEmailAndPassword(email: _emailCont.text,password: _passCont.text,);
+          //});
+          //Navigator.of(context).pushNamed('/profile_page');
+          /*setState(() {
+            _name = _nameCont.text;
+            _email = _emailCont.text;
+            _password = _passCont.text;
+            pushDataFirebase();
+          });*/
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -185,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         color: Colors.white,
         child: Text(
-          'LOGIN',
+          'Sign Up',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -198,7 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSignInWithText() {
+  Widget _buildSignUpWithText() {
     return Column(
       children: <Widget>[
         Text(
@@ -210,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         SizedBox(height: 20.0),
         Text(
-          'Sign in with',
+          'Sign up with',
           style: kLabelStyle,
         ),
       ],
@@ -241,39 +235,17 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSocialBtnRow() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 30.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          _buildSocialBtn(
-                () => print('Login with Facebook'),
-            AssetImage(
-              'assets/logos/facebook.jpg',
-            ),
-          ),
-          _buildSocialBtn(
-                () => print('Login with Google'),
-            AssetImage(
-              'assets/logos/google.jpg',
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
-  Widget _buildSignupBtn() {
+  Widget _buildSignInBtn() {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed('/signup_page');
+        Navigator.of(context).pushNamed('/login_page');
       },
       child: RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: 'Don\'t have an Account? ',
+              text: 'Already have an account? ',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -281,7 +253,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             TextSpan(
-              text: 'Sign Up',
+              text: 'Sign In',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -293,7 +265,12 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
+  void _verify_user(){
+    final _auth = FirebaseAuth.instance;
+    User user;
+    user = _auth.currentUser;
+    user.sendEmailVerification();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -334,7 +311,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Sign In',
+                            'Sign Up',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'OpenSans',
@@ -343,22 +320,23 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           SizedBox(height: 30.0),
+                          //  _buildNameTF(),
                           _buildEmailTF(),
                           _buildPasswordTF(),
                           SizedBox(
-                            height: 20.0,
+                            height: 30.0,
                           ),
-                          Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                _buildRememberMeCheckbox(),
-                                Spacer(),
-                                _buildForgotPasswordBtn(),
-                              ]),
-                          _buildLoginBtn(),
-                          //_buildSignInWithText(),
-                          //_buildSocialBtnRow(),
-                          _buildSignupBtn(),
+                          _buildSignUpBtn(),
+                          //_buildSignUpWithText(),
+                          _buildSignInBtn(),
+                          Container(
+                            alignment: Alignment.center,
+                            child: Text(_success == null
+                                ?''
+                                :(_success
+                                ? 'successfully registered ' + _userEmail
+                                : 'Registration failed')),
+                          )
                         ],
                       ),
                     ),

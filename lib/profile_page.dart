@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lucifer/data.dart';
+import 'package:lucifer/signup_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -43,6 +44,36 @@ class _ProfilePageState extends State<ProfilePage> {
                     })
               ]);
         });
+  }
+  Widget _buildLoginBtn1() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5.0),
+      width: 330.0,
+      height: 80.0,
+      child: RaisedButton(
+        onPressed: () {
+
+          //Navigator.of(context).pushNamed('/home_page');
+
+        },
+        padding: EdgeInsets.all(15.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        color: Colors.indigo[900],
+        child: Text(
+          'Done',
+          style: TextStyle(
+            color: Colors.white,
+            letterSpacing: 1.5,
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'OpenSans',
+          ),
+        ),
+
+      ),
+    );
   }
 
   @override
