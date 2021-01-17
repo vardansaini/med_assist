@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MedicinesPage extends StatefulWidget {
@@ -9,17 +10,49 @@ class _MedicinesPageState extends State<MedicinesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.redAccent,
-            title: Text("Medicines"),
-            centerTitle: true,
-            leading: IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/home_page');
-                }
-            )
-        )
+      appBar: AppBar(
+          backgroundColor: Colors.redAccent,
+          title: Text("Medicines"),
+          centerTitle: true,
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/home_page');
+              })),
+      body: MedicinesList('test'),
+    );
+  }
+}
+
+class MedicinesList extends StatelessWidget {
+  final String documentId;
+
+  MedicinesList(this.documentId);
+
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    return StreamBuilder<DocumentSnapshot>(
+      stream: users.doc(documentId).snapshots(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+
+        return ListView(
+          children: snapshot.data
+              .data()["medicines"]
+              .entries
+              .map<ListTile>((MapEntry<String, dynamic> entry) => new ListTile(
+                  title: Text(entry.key), subtitle: Text(entry.value)))
+              .toList(),
+        );
+      },
     );
   }
 }
