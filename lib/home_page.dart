@@ -130,6 +130,37 @@ class HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _buildLoginBtn5() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5.0),
+      width: 300.0,
+      height: 100.0,
+      child: FlatButton(
+          onPressed: () {},
+          padding: EdgeInsets.all(15.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          color: Colors.redAccent[200],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              //Icon(Icons.home, size: 75, color: Colors.white),
+              Text(
+                'Emergency',
+                style: TextStyle(
+                  color: Colors.white,
+                  letterSpacing: 1.5,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'OpenSans',
+                ),textAlign: TextAlign.center,
+              ),
+            ],
+          )),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,6 +214,7 @@ class HomePageState extends State<HomePage> {
                           _buildLoginBtn4(),
                         ],
                       ),
+                      _buildLoginBtn5(),
                     ],
                   ),
                 ),
