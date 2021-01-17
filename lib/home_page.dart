@@ -19,7 +19,7 @@ class HomePageState extends State<HomePage>{
         Navigator.of(context).pushNamed('/profile_page');
       }break;
       case 2: {
-
+        print(MediaQuery.of(context).size.height);
       }break;
       case 3: {
 
@@ -46,10 +46,17 @@ class HomePageState extends State<HomePage>{
         });
       },
       // color: Colors.white,
-      child: iconSel == 3 ? Text("Help") :
+      child: iconSel == 3 ? Container(padding: EdgeInsets.all(35),child: Text("Help",style: TextStyle(
+        color: Colors.white,
+        fontFamily: 'OpenSans',
+        fontSize: 60,
+        fontWeight: FontWeight.bold,
+      ),)) :
       Icon((iconSel==1 ? Icons.person :
       (iconSel == 2 ? Icons.house_outlined:
-      ( iconSel == 4 ? Icons.assignment : Icons.backpack))), size: (butSize == 1 ? 70 : 150)),
+      ( iconSel == 4 ? Icons.assignment : Icons.backpack))), size:
+      (butSize == 1 ? MediaQuery.of(context).size.height/9 :
+      MediaQuery.of(context).size.height/4.5), ),
     );
   }
 
@@ -90,21 +97,42 @@ class HomePageState extends State<HomePage>{
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              _buildButton(1, 1),
-                              _buildButton(2, 1),
-                            ],
+                          Container(
+                            height: MediaQuery.of(context).size.height/5,
+                            child: Align(
+                              alignment: Alignment(0,0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  _buildButton(1, 1),
+                                  Spacer(),
+                                  _buildButton(2, 1),
+                                ],
+                              ),
+                            )
                           ),
-                          _buildButton(3,2),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              _buildButton(4, 1),
-                              _buildButton(5, 1),
-                            ],
+                          Container(
+                              height: MediaQuery.of(context).size.height*2/5,
+                              child: Align(
+                                alignment: Alignment(0,0),
+                                child:  _buildButton(3,2),
+                              )
                           ),
+                          Container(
+                              height: MediaQuery.of(context).size.height/5,
+                              child: Align(
+                                alignment: Alignment(0,0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    _buildButton(4, 1),
+                                    Spacer(),
+                                    _buildButton(5, 1),
+                                  ],
+                                ),
+                              )
+                          ),
+                          
                         ],
                       ),
                     ),
