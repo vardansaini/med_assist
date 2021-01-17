@@ -50,8 +50,8 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Google Office Locations'),
-        backgroundColor: Colors.blue,
+        title: const Text('Volunteers Available'),
+        backgroundColor: Colors.tealAccent[700],
       ),
       body: Column(
         children: [
@@ -64,7 +64,7 @@ class _MapPageState extends State<MapPage> {
                 GoogleMap(
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: CameraPosition(
-                    target: const LatLng(0, 0),
+                    target: const LatLng(53.5461, 113.4938),
                     zoom: 2,
                   ),
                   myLocationEnabled: true,
@@ -72,19 +72,19 @@ class _MapPageState extends State<MapPage> {
                   compassEnabled: true,
                 ),
               ),
-              Positioned(
+              /*Positioned(
                 bottom: 50,
                 right: 10,
                 child: FlatButton(
                   child: Icon(
-                    Icons.pin_drop,
-                    color: Colors.blue,
+                    //Icons.pin_drop,
+                    //color: Colors.blue,
                   ),
                   color: Colors.white,
-                  //onPressed: _addMarker,*/
-                ),
+                  //onPressed: _addMarker,
+                ),*/
 
-              ),
+
             ],
           ),
         ],

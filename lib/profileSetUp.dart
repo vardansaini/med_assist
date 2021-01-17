@@ -60,7 +60,7 @@ class _ProfilePageSetupState extends State<ProfilePageSetup> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        color: Colors.indigo[900],
+        color: Colors.tealAccent[700],
         child: Text(
           'Done',
           style: TextStyle(
@@ -96,7 +96,7 @@ class _ProfilePageSetupState extends State<ProfilePageSetup> {
 
           return Scaffold(
             appBar: AppBar(
-                backgroundColor: Colors.indigo[900],
+                backgroundColor: Colors.tealAccent[700],
                 title: Text("Profile Page"),
                 centerTitle: true,
                 ),

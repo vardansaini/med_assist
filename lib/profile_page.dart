@@ -96,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
           return Scaffold(
             appBar: AppBar(
-                backgroundColor: Colors.redAccent,
+                backgroundColor: Colors.tealAccent[700],
                 title: Text("Profile Page"),
                 centerTitle: true,
                 leading: IconButton(
