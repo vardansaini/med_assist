@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,6 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
   Widget _buildLoginBtn1() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5.0),
@@ -23,7 +21,7 @@ class HomePageState extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.indigo[900],
+          color: Colors.tealAccent[700],
           child: Column(children: <Widget>[
             Icon(
               Icons.person,
@@ -50,18 +48,20 @@ class HomePageState extends State<HomePage> {
       width: 160.0,
       height: 160.0,
       child: FlatButton(
-          onPressed: () { () async{
-            await _auth.signOut();
-          };
-          Navigator.of(context).pushNamed('/login_page');
+          onPressed: () {
+<<<<<<< HEAD
+            Navigator.of(context).pushNamed('/medicines');
+=======
+            Navigator.of(context).pushNamed('/login_page');
+>>>>>>> 4d54473a7a4f8d7f5d54e20ab6427c6b2758e123
           },
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.indigo[900],
+          color: Colors.tealAccent[700],
           child: Column(children: <Widget>[
-            Icon(Icons.home, size: 75, color: Colors.white),
+            Icon(Icons.medical_services_rounded, size: 75, color: Colors.white),
             Text(
               'Medications',
               style: TextStyle(
@@ -87,16 +87,26 @@ class HomePageState extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.indigo[900],
+          color: Colors.tealAccent[700],
           child: Column(
             children: <Widget>[
-              Icon(Icons.home, size: 75, color: Colors.white),
+              Icon(Icons.filter_frames_rounded, size: 75, color: Colors.white),
               Text(
-                'Medications',
+                'Medical',
                 style: TextStyle(
                   color: Colors.white,
                   letterSpacing: 1.5,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'OpenSans',
+                ),
+              ),
+              Text(
+                'Reports',
+                style: TextStyle(
+                  color: Colors.white,
+                  letterSpacing: 1.5,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'OpenSans',
                 ),
@@ -112,25 +122,37 @@ class HomePageState extends State<HomePage> {
       width: 160.0,
       height: 160.0,
       child: FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed('/google_map');
+          },
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.indigo[900],
+          color: Colors.tealAccent[700],
           child: Column(
             children: <Widget>[
-              Icon(Icons.home, size: 75, color: Colors.white),
+              Icon(Icons.volunteer_activism, size: 75, color: Colors.white),
               Text(
-                'Medications',
+                'Get a ',
                 style: TextStyle(
                   color: Colors.white,
                   letterSpacing: 1.5,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'OpenSans',
                 ),
               ),
+          Text(
+            'Volunteer',
+            style: TextStyle(
+              color: Colors.white,
+              letterSpacing: 1.5,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'OpenSans',
+            ),
+          ),
             ],
           )),
     );
@@ -147,7 +169,7 @@ class HomePageState extends State<HomePage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.redAccent[200],
+          color: Colors.red,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -157,7 +179,7 @@ class HomePageState extends State<HomePage> {
                 style: TextStyle(
                   color: Colors.white,
                   letterSpacing: 1.5,
-                  fontSize: 20.0,
+                  fontSize: 45.0,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'OpenSans',
                 ),textAlign: TextAlign.center,
@@ -180,7 +202,7 @@ class HomePageState extends State<HomePage> {
                 height: double.infinity,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.teal[100],
                 ),
               ),
               Container(
@@ -197,7 +219,7 @@ class HomePageState extends State<HomePage> {
                       Text(
                         'Home',
                         style: TextStyle(
-                          color: Colors.indigo[900],
+                          color: Colors.teal[700],
                           fontFamily: 'OpenSans',
                           fontSize: 50.0,
                           fontWeight: FontWeight.bold,
