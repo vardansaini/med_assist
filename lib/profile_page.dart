@@ -109,7 +109,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       subtitle: Text(userInfo["blood_group"] ?? ""),
                       trailing: Icon(Icons.edit),
                       onTap: () async {
-                        await showInformationDialog(context, userId, "blood_group");
+                        await showInformationDialog(
+                            context, userId, "blood_group");
                       },
                     ),
                     ListTile(
