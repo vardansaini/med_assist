@@ -6,34 +6,43 @@ class HomePage extends StatefulWidget {
   @override
   HomePageState createState() => HomePageState();
 }
-class HomePageState extends State<HomePage>{
+
+class HomePageState extends State<HomePage> {
   int _button1Pressed = 0;
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _button1Pressed = 0;
   }
-  void _buttonPressed(int iconSel){
-    switch (iconSel){
-      case 1: {
-        Navigator.of(context).pushNamed('/profile_page');
-      }break;
-      case 2: {
-        print(MediaQuery.of(context).size.height);
-      }break;
-      case 3: {
 
-      }break;
-      case 4: {
-        Navigator.of(context).pushNamed('/medicines');
-      }break;
-      case 5: {
-        //Navigator.of(context).pushNamed('');
-      }break;
-
+  void _buttonPressed(int iconSel) {
+    switch (iconSel) {
+      case 1:
+        {
+          Navigator.of(context).pushNamed('/profile_page');
+        }
+        break;
+      case 2:
+        {
+          print(MediaQuery.of(context).size.height);
+        }
+        break;
+      case 3:
+        {}
+        break;
+      case 4:
+        {
+          Navigator.of(context).pushNamed('/medicines');
+        }
+        break;
+      case 5:
+        {
+          //Navigator.of(context).pushNamed('');
+        }
+        break;
     }
-
   }
+
   Widget _buildButton(int iconSel, int butSize) {
     return MaterialButton(
       color: (true) ? Colors.blue : Colors.black,
@@ -41,22 +50,33 @@ class HomePageState extends State<HomePage>{
       shape: CircleBorder(),
       onPressed: () {
         setState(() {
-          _button1Pressed = 1;
+          //_button1Pressed = 1;
           _buttonPressed(iconSel);
         });
       },
       // color: Colors.white,
-      child: iconSel == 3 ? Container(padding: EdgeInsets.all(35),child: Text("Help",style: TextStyle(
-        color: Colors.white,
-        fontFamily: 'OpenSans',
-        fontSize: 60,
-        fontWeight: FontWeight.bold,
-      ),)) :
-      Icon((iconSel==1 ? Icons.person :
-      (iconSel == 2 ? Icons.house_outlined:
-      ( iconSel == 4 ? Icons.assignment : Icons.backpack))), size:
-      (butSize == 1 ? MediaQuery.of(context).size.height/9 :
-      MediaQuery.of(context).size.height/4.5), ),
+      child: iconSel == 3
+          ? Container(
+              padding: EdgeInsets.all(35),
+              child: Text(
+                "Help",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'OpenSans',
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold,
+                ),
+              ))
+          : Icon(
+              (iconSel == 1
+                  ? Icons.person
+                  : (iconSel == 2
+                      ? Icons.house_outlined
+                      : (iconSel == 4 ? Icons.assignment : Icons.backpack))),
+              size: (butSize == 1
+                  ? MediaQuery.of(context).size.height / 9
+                  : MediaQuery.of(context).size.height / 4.5),
+            ),
     );
   }
 
@@ -98,30 +118,29 @@ class HomePageState extends State<HomePage>{
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            height: MediaQuery.of(context).size.height/5,
-                            child: Align(
-                              alignment: Alignment(0,0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  _buildButton(1, 1),
-                                  Spacer(),
-                                  _buildButton(2, 1),
-                                ],
-                              ),
-                            )
-                          ),
-                          Container(
-                              height: MediaQuery.of(context).size.height*2/5,
+                              height: MediaQuery.of(context).size.height / 5,
                               child: Align(
-                                alignment: Alignment(0,0),
-                                child:  _buildButton(3,2),
-                              )
-                          ),
+                                alignment: Alignment(0, 0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    _buildButton(1, 1),
+                                    Spacer(),
+                                    _buildButton(2, 1),
+                                  ],
+                                ),
+                              )),
                           Container(
-                              height: MediaQuery.of(context).size.height/5,
+                              height:
+                                  MediaQuery.of(context).size.height * 2 / 5,
                               child: Align(
-                                alignment: Alignment(0,0),
+                                alignment: Alignment(0, 0),
+                                child: _buildButton(3, 2),
+                              )),
+                          Container(
+                              height: MediaQuery.of(context).size.height / 5,
+                              child: Align(
+                                alignment: Alignment(0, 0),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
@@ -130,9 +149,7 @@ class HomePageState extends State<HomePage>{
                                     _buildButton(5, 1),
                                   ],
                                 ),
-                              )
-                          ),
-                          
+                              )),
                         ],
                       ),
                     ),
