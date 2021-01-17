@@ -48,7 +48,9 @@ class HomePageState extends State<HomePage> {
       width: 160.0,
       height: 160.0,
       child: FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed('/login_page');
+          },
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),

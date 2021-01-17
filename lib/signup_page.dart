@@ -327,7 +327,7 @@ class _SignupPageState extends State<SignupPage> {
                             height: 30.0,
                           ),
                           _buildSignUpBtn(),
-                          _buildSignUpWithText(),
+                          //_buildSignUpWithText(),
                           _buildSignInBtn(),
                           Container(
                             alignment: Alignment.center,
