@@ -93,8 +93,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
           return Scaffold(
             appBar: AppBar(
+
                 backgroundColor: Colors.tealAccent[700],
-                title: Text("Profile Page"),
+                title: Text("Profile Page", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
                 centerTitle: true,
                 leading: IconButton(
                     icon: Icon(Icons.arrow_back),
@@ -110,31 +111,23 @@ class _ProfilePageState extends State<ProfilePage> {
                       borderRadius: BorderRadius.circular(10.0)),
                   child: Column(children: <Widget>[
                     ListTile(
-                        title: Text('Name'),
-                        subtitle: Text(userInfo['name'] ?? ''),
+                        title: Text("Name", style: TextStyle(fontSize: 18)),
+                        subtitle: Text(userInfo["name"] ?? "", style: TextStyle(fontSize: 16),),
                         trailing: Icon(Icons.edit),
                         onTap: () async {
                           await showInformationDialog(context, userId, 'name');
                         }),
                     ListTile(
-                      title: Text('Age'),
-                      subtitle: Text(userInfo['age'].toString() ?? ''),
-                      trailing: Icon(Icons.edit),
-                      onTap: () async {
-                        await showInformationDialog(context, userId, 'age');
-                      },
-                    ),
-                    ListTile(
-                      title: Text('Gender'),
-                      subtitle: Text(userInfo['gender'] ?? ''),
+                      title: Text("Age", style: TextStyle(fontSize: 18)),
+                      subtitle: Text(userInfo["age"].toString() ?? "", style: TextStyle(fontSize: 16),),
                       trailing: Icon(Icons.edit),
                       onTap: () async {
                         await showInformationDialog(context, userId, 'gender');
                       },
                     ),
                     ListTile(
-                      title: Text('Blood Group'),
-                      subtitle: Text(userInfo['blood_group'] ?? ''),
+                      title: Text("Blood Group", style: TextStyle(fontSize: 18)),
+                      subtitle: Text(userInfo["blood_group"] ?? "", style: TextStyle(fontSize: 16),),
                       trailing: Icon(Icons.edit),
                       onTap: () async {
                         await showInformationDialog(
@@ -142,62 +135,30 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                     ListTile(
-                      title: Text('Address'),
-                      subtitle: Text(userInfo['address'] ?? ''),
+                      title: Text("Address", style: TextStyle(fontSize: 18)),
+                      subtitle: Text(userInfo["address"] ?? "", style: TextStyle(fontSize: 16),),
                       trailing: Icon(Icons.edit),
                       onTap: () async {
-                        await showInformationDialog(context, userId, 'address');
+                        await showInformationDialog(
+                            context, userId, 'address');
                       },
                     ),
-                    ListTile(
-                      title: Text('Contact'),
-                      subtitle: Text(userInfo['contact'] ?? ''),
-                      trailing: Icon(Icons.edit),
-                      onTap: () async {
-                        await showInformationDialog(context, userId, 'contact');
-                      },
-                    ),
-                  ])),
-              Card(
-                elevation: 4.0,
-                margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 1.0),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      title: Text('Critical Medical Conditions'),
-                    ),
-                    Text('Your medical conditions here'),
-                    ListTile(
-                      title: Text('Emergency Contact'),
-                    ),
-                    ListTile(
-                      title: Text('Alberta Health Card'),
-                    )
-                  ],
-                ),
-              )
-            ])),
-            bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              currentIndex: _currentIndex,
-              onTap: (value) {
-                // Respond to item press.
-                setState(() => _currentIndex = value);
-              },
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Profile',
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.person), label: 'Profile')
+                ListTile(
+                    title: Text("Contact", style: TextStyle(fontSize: 18)),
+                    subtitle: Text(userInfo["contact"] ?? "", style: TextStyle(fontSize: 16),),
+                    trailing: Icon(Icons.edit),
+                    onTap: () async {
+                      await showInformationDialog(
+                          context, userId, 'contact');
+                    },
+              ),
               ],
+              ),
+              ),
+
+
+                ],
+                ),
             ),
           );
         });

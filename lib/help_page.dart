@@ -89,7 +89,7 @@ class HelpPageState extends State<HelpPage> {
                 height: double.infinity,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.teal[100],
                 ),
               ),
               Container(

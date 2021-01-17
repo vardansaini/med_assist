@@ -54,7 +54,6 @@ class _ProfilePageSetupState extends State<ProfilePageSetup> {
         onPressed: () {
           Navigator.of(context).pop();
           Navigator.of(context).pushNamed('/home_page');
-
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -71,7 +70,6 @@ class _ProfilePageSetupState extends State<ProfilePageSetup> {
             fontFamily: 'OpenSans',
           ),
         ),
-
       ),
     );
   }
@@ -96,73 +94,80 @@ class _ProfilePageSetupState extends State<ProfilePageSetup> {
 
           return Scaffold(
             appBar: AppBar(
-                backgroundColor: Colors.tealAccent[700],
-                title: Text("Profile Page"),
-                centerTitle: true,
-                ),
+              backgroundColor: Colors.tealAccent[700],
+              title: Text("Profile Page",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              centerTitle: true,
+            ),
             body: SingleChildScrollView(
                 child: Column(children: <Widget>[
-                  Card(
-                      elevation: 4.0,
-                      margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 1.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Column(children: <Widget>[
-                        ListTile(
-                            title: Text("Name"),
-                            subtitle: Text(userInfo["name"] ?? ""),
-                            trailing: Icon(Icons.edit),
-                            onTap: () async {
-                              await showInformationDialog(context, userId, "name");
-                            }),
-                        ListTile(
-                          title: Text("Age"),
-                          subtitle: Text(userInfo["age"].toString() ?? ""),
-                          trailing: Icon(Icons.edit),
-                          onTap: () async {
-                            await showInformationDialog(context, userId, "age");
-                          },
+              Card(
+                  elevation: 4.0,
+                  margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 1.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Column(children: <Widget>[
+                    ListTile(
+                        title: Text("Name", style: TextStyle(fontSize: 18)),
+                        subtitle: Text(
+                          userInfo["name"] ?? "",
+                          style: TextStyle(fontSize: 16),
                         ),
-                        ListTile(
-                          title: Text("Gender"),
-                          subtitle: Text(userInfo["gender"] ?? ""),
-                          trailing: Icon(Icons.edit),
-                          onTap: () async {
-                            await showInformationDialog(context, userId, "gender");
-                          },
-                        ),
-                        ListTile(
-                          title: Text("Blood Group"),
-                          subtitle: Text(userInfo["blood_group"] ?? ""),
-                          trailing: Icon(Icons.edit),
-                          onTap: () async {
-                            await showInformationDialog(
-                                context, userId, "blood_group");
-                          },
-                        ),
-                        ListTile(
-                          title: Text("Address"),
-                          subtitle: Text(userInfo["address"] ?? ""),
-                          trailing: Icon(Icons.edit),
-                          onTap: () async {
-                            await showInformationDialog(context, userId, "address");
-                          },
-                        ),
-                        ListTile(
-                          title: Text("Contact"),
-                          subtitle: Text(userInfo["contact"] ?? ""),
-                          trailing: Icon(Icons.edit),
-                          onTap: () async {
-                            await showInformationDialog(context, userId, "contact");
-                          },
-                        ),
-                      ])),
-
-                _buildLoginBtn1(),
-                ]
-                )
-            ),
-
+                        trailing: Icon(Icons.edit),
+                        onTap: () async {
+                          await showInformationDialog(context, userId, "name");
+                        }),
+                    ListTile(
+                      title: Text("Age", style: TextStyle(fontSize: 18)),
+                      subtitle: Text(userInfo["age"].toString() ?? "",
+                          style: TextStyle(fontSize: 16)),
+                      trailing: Icon(Icons.edit),
+                      onTap: () async {
+                        await showInformationDialog(context, userId, "age");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("Gender", style: TextStyle(fontSize: 18)),
+                      subtitle: Text(userInfo["gender"] ?? "",
+                          style: TextStyle(fontSize: 16)),
+                      trailing: Icon(Icons.edit),
+                      onTap: () async {
+                        await showInformationDialog(context, userId, "gender");
+                      },
+                    ),
+                    ListTile(
+                      title:
+                          Text("Blood Group", style: TextStyle(fontSize: 18)),
+                      subtitle: Text(userInfo["blood_group"] ?? "",
+                          style: TextStyle(fontSize: 16)),
+                      trailing: Icon(Icons.edit),
+                      onTap: () async {
+                        await showInformationDialog(
+                            context, userId, "blood_group");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("Address", style: TextStyle(fontSize: 18)),
+                      subtitle: Text(userInfo["address"] ?? "",
+                          style: TextStyle(fontSize: 16)),
+                      trailing: Icon(Icons.edit),
+                      onTap: () async {
+                        await showInformationDialog(context, userId, "address");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("Contact", style: TextStyle(fontSize: 18)),
+                      subtitle: Text(userInfo["contact"] ?? "",
+                          style: TextStyle(fontSize: 16)),
+                      trailing: Icon(Icons.edit),
+                      onTap: () async {
+                        await showInformationDialog(context, userId, "contact");
+                      },
+                    ),
+                  ])),
+              SizedBox(height: 40),
+              _buildLoginBtn1(),
+            ])),
           );
         });
   }
