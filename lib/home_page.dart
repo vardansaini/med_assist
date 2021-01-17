@@ -13,7 +13,7 @@ class HomePageState extends State<HomePage>{
     super.initState();
     _button1Pressed = 0;
   }
-  Widget _smallButton(int sel) {
+  Widget _buildButton(int iconSel, int butSize) {
     return MaterialButton(
       color: ( _button1Pressed == 1) ? Colors.blue : Colors.black,
       padding: EdgeInsets.all(16.0),
@@ -24,7 +24,9 @@ class HomePageState extends State<HomePage>{
         });
       },
       // color: Colors.white,
-      child: Icon((sel == 1?Icons.person : Icons.people), size: 70,),
+      child: Icon((iconSel==1 ? Icons.person :
+      (iconSel == 2 ? Icons.house_outlined:
+      ( iconSel == 3 ? Icons.assignment : Icons.backpack))), size: (butSize == 1 ? 70 : 150)),
     );
   }
 
@@ -65,7 +67,21 @@ class HomePageState extends State<HomePage>{
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          _smallButton(1),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              _buildButton(1, 1),
+                              _buildButton(2, 1),
+                            ],
+                          ),
+                          _buildButton(3,2),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              _buildButton(4, 1),
+                              _buildButton(5, 1),
+                            ],
+                          ),
                         ],
                       ),
                     ),
